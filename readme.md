@@ -50,10 +50,13 @@ git reflog # with this you can find you every comd, commit id is also in it
 **git manage the changes, not the files**
 
 #### how to discard the changes
-1. before in stage, use "git checkout -- filename" to discard the changes
+1. before in stage, use "git checkout -- filename" to discard the changes in work place
 2. in stage, use " git reset HEAD filename" to unstage the file, and use step 1 
 3. if you had commit the changes to your computer repostiory, you need use " git reset --hard HEAD~1" to rollback
 
+#### remove the files
+1. "git add file", in workplace, you "rm test.txt", and git will know it, you nedd "git rm test.txt", and "git commit -m "remove file"
+2. after you remove the file, you regret to do it. you need "git checkout -- file" to replace the file in workplace(evenif it's empty)
 
 
 
