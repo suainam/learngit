@@ -45,6 +45,8 @@ git reflog # with this you can find you every comd, commit id is also in it
 - learngit is my work place
 - git add, can add my file, for example, readme.md, to .git/stage[index]
 - git commit, can add the files in stage to current branch (eg. master)
+**git will only commit the files in stage, if you modify you file after git add, you use commit will only commit the last distribute, not the newest modify**
+**git manage the changes, not the files**
 
 
 
