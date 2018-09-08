@@ -19,7 +19,7 @@ git init # inint this file to be your repository, a file named '.git' will be cr
 #### add and commit
 ```bash 
 git add file
-git commit -m 'wrot a readme file and so on'
+git commit -m "wrot a readme file and so on"
 # you can add many file, and commit them to your repository in one time
 ```
 #### git status
@@ -41,6 +41,10 @@ git rest --hard 1094a # this is commit id, the new distribute
 
 git reflog # with this you can find you every comd, commit id is also in it
 ```
+#### work place and repostiory
+- learngit is my work place
+- git add, can add my file, for example, readme.md, to .git/stage[index]
+- git commit, can add the files in stage to current branch (eg. master)
 
 
 
