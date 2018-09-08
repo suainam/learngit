@@ -34,7 +34,8 @@ git log --pretty=online # will show log in line
 ```
 #### to last  or new distribute
 ```bash
-git reset --hard HEAD^ #last of last, user 'HEAD^^', many ago, 'HEAD~100' and so on
+# ^ in cmd will be "\", should use "^^" or "~1" to replace
+git reset --hard HEAD^^ #last of last, user 'HEAD^^', many ago, 'HEAD~100' and so on
 cat file #see what had happened
 
 git rest --hard 1094a # this is commit id, the new distribute
@@ -47,6 +48,11 @@ git reflog # with this you can find you every comd, commit id is also in it
 - git commit, can add the files in stage to current branch (eg. master)
 **git will only commit the files in stage, if you modify you file after git add, you use commit will only commit the last distribute, not the newest modify**
 **git manage the changes, not the files**
+
+#### how to discard the changes
+1. before in stage, use "git checkout -- filename" to discard the changes
+2. in stage, use " git reset HEAD filename" to unstage the file, and use step 1 
+3. if you had commit the changes to your computer repostiory, you need use " git reset --hard HEAD~1" to rollback
 
 
 
