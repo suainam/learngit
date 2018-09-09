@@ -58,5 +58,39 @@ git reflog # with this you can find you every comd, commit id is also in it
 1. "git add file", in workplace, you "rm test.txt", and git will know it, you nedd "git rm test.txt", and "git commit -m "remove file"
 2. after you remove the file, you regret to do it. you need "git checkout -- file" to replace the file in workplace(evenif it's empty)
 
+#### github
+- create sshkey
+    - in user profiles, find ".ssh" and "id_rsa id_ras.pub" in it, if not exists:
+    	- ssh-keygen -t rsa -C "youremail@gmail.com"
+		- just press enter is ok
+	- "id_rsa.pub" is public
+    - login github, "account setting", "ssh keys", "add ssh key", copy the content of "id_rsa.pub"
+and paste it here
+    
+#### remote origin
+```bash
+# create your repository on github, eg. learngit
+git remote add orgin git@github.com:yourusername/learngit.git
+git push  -u origin master
+# when you first push, "-u" will bulid a realtionships between master on your desktop and origin, it need'tafter 
+git clone git@github.com:yourusername/learngit.git
+#clone from origin. git@github.com is git://, use ssh, https:// is also useful, but maybe slowly.
+```
+
+#### branch
+```bash
+git checkout -b dev # create dev branch and checkout
+# git branch dev, git checkout dev
+git branch 
+# *dev, master
+
+# vim a new file, and add it to stage, then commit it. 
+git checkout master
+git merge dev
+# switched to branch master, and merge dev
+
+git branch -d dev
+# after merged, delete dev
+```
 
 
