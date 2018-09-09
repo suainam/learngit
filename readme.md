@@ -143,3 +143,10 @@ git stash pop
 # git stash list will be empty
 ```
 
+#### Force Delete feature branch
+- before merge to master, delete branch
+```bash
+git branch -D feature1
+```
+- "-D" needed
+
