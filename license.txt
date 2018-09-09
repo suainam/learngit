@@ -10,4 +10,4 @@ this is fiv line
 
 this is creating a new branch is quick
 
-creating a new branch is quick & simple
+creating a new branvh is quivk and simple
