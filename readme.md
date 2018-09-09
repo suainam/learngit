@@ -110,6 +110,36 @@ git checkout master
 git merge --no-ff -m "merge with no-ff" dev
 # with new commit, "-m" is needed
 git log --graph --pretty=oneline --abbrev-commit
+```
 
-####
+#### bug branch
+- git stash can store the status of your current workplace
+- which branch's bug, and create new branch form it
+```bash
+git status 
+# current work needs to be stored
+git stash
+# stored
+git status 
+# it's clear
+git checkout master
+git checkout -b issue-01
+# eg. The bug is in master's
+# fix the bug, then add and commit it
+git checkout master
+git merge --no-f -m "merge bug fix 01" issue-01
+# bug fixed, have to do the job
+
+git checkout test
+git status
+# it's clear
+git stash list
+# it's here
+git stash apply @{}
+git stash drop @{}
+or
+git stash pop
+# this will apply and drop
+# git stash list will be empty
+```
 
