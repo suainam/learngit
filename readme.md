@@ -149,4 +149,6 @@ git stash pop
 git branch -D feature1
 ```
 - "-D" needed
-
+#### 多人协作
++ git clone，会自动将origin 的master和本地的master对应起来
+	 git remote，可查看远程库的信息，默认返回origin
