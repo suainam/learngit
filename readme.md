@@ -1,100 +1,106 @@
-#### install git
-- Linux
-    sudo apt-get install git
-- windows
-      - dowload git from 'https://git-scm.com/downloads'
-      - start menu, 'git' -> 'git bash', if open success, then git installed.
-#### git config
-```bash
-git config --global user.name 'Your Name'
-git config --global user.email 'email@example.com'
-# global, you can also 
+### Learn Git
+**目录**
+[TOCM]
+[TOC]
+#### Install Git
++ Linux
+    + sudo apt-get install Git
++ windows
+    + dowload Git from 'https://git-scm.com/downloads'
+    + start menu, 'git' -> 'git Bash', if open success, then Git installed.
+#### Git config
+```Bash
+Git config --global user.name 'Your Name'
+Git config --global user.email 'email@example.com'
+# global, 你可以设定自己的配置
 ```
-#### create repository
-```bash
-mkdir file  | cd file # your current file is also ok
-git init # inint this file to be your repository, a file named '.git' will be created
+#### Create repository
+```Bash
+Mkdir file  | cd file 
+# your current file is also ok
+Git init 
+# inint this file to be your repository, a file named '.git' will be created
 ```
-#### writting your file in your files
-#### add and commit
-```bash 
-git add file
-git commit -m "wrot a readme file and so on"
+#### Writting your file in your files
+#### Add and Commit
+```Bash 
+Git add file
+Git commit -m "wrot a readme file and so on"
 # you can add many file, and commit them to your repository in one time
 ```
-#### git status
-```bash
-git status # the status of repository
-git diff file # list the difference between new file and old file
+#### Git status
+```Bash
+Git status # the status of repository
+Git diff file # list the difference between new file and old file
 ```
-#### git log
-```bash
-# git add and git commit will store every changes, and git log will store the changes' infomation
-git log --pretty=online # will show log in line 
+#### Git log
+```Bash
+# Git add and git commit will store every changes, and git log will store the changes' infomation
+Git log --pretty=online # will show log in line 
 ```
-#### rollbach to last  or new distribute
-```bash
+#### Rollbach to last  or new distribute
+```Bash
 # ^ in cmd will be "\", should use "^^" or "~1" to replace
-git reset --hard HEAD^^ 
+Git reset --hard HEAD^^ 
 #last of last, user 'HEAD^^', many ago, 'HEAD~100' and so on
-cat file 
+Cat file 
 #see what had happened
 
-git rest --hard 1094a 
+Git rest --hard 1094a 
 # this is commit id, the new distribute
 
-git reflog 
+Git reflog 
 # with this you can find you every comd, commit id is also in it
 ```
 #### work place and repostiory
 - learngit is my work place
-- git add, can add my file, for example, readme.md, to .git/stage[index]
-- git commit, can add the files in stage to current branch (eg. master)
-- **git will only commit the files in stage, if you modify you file after git add, you use commit will only commit the last distribute, not the newest modify**
+- Git add, can add my file, for example, readme.md, to .git/stage[index]
+- Git commit, can add the files in stage to current branch (eg. master)
+- **git will only commit the files in stage, if you modify you file after Git add, you use commit will only commit the last distribute, not the newest modify**
 - **git manage the changes, not the files**
 
 #### how to discard the changes
 1. before in stage, use "git checkout -- filename" to discard the changes in work place
-2. in stage, use " git reset HEAD filename" to unstage the file, and use step 1 
-3. if you had commit the changes to your computer repostiory, you need use " git reset --hard HEAD~1" to rollback
+2. in stage, use " Git reset HEAD filename" to unstage the file, and use step 1 
+3. if you had commit the changes to your computer repostiory, you need use " Git reset --hard HEAD~1" to rollback
 
 #### remove the files
-1. "git add file", in workplace, you "rm test.txt", and git will know it, you nedd "git rm test.txt", and "git commit -m "remove file"
+1. "git add file", in workplace, you "rm test.txt", and Git will know it, you nedd "git rm test.txt", and "git commit -m "remove file"
 2. after you remove the file, you regret to do it. you need "git checkout -- file" to replace the file in workplace(evenif it's empty)
 
-#### github
+#### Github
 - create sshkey
     - in user profiles, find ".ssh" and "id_rsa id_ras.pub" in it, if not exists:
     	- ssh-keygen -t rsa -C "youremail@gmail.com"
 		- just press enter is ok
 	- "id_rsa.pub" is public
-    - login github, "account setting", "ssh keys", "add ssh key", copy the content of "id_rsa.pub"
-and paste it here
+    - login Github, "account setting", "ssh keys", "add ssh key", copy the content of "id_rsa.pub"
+And paste it here
     
 #### remote origin
-```bash
-# create your repository on github, eg. learngit
-git remote add orgin git@github.com:yourusername/learngit.git
-git push  -u origin master
+```Bash
+# create your repository on Github, eg. learngit
+Git remote add orgin Git@github.com:yourusername/learngit.git
+Git push  -u origin master
 # when you first push, "-u" will bulid a realtionships between master on your desktop and origin, it need'tafter 
-git clone git@github.com:yourusername/learngit.git
-#clone from origin. git@github.com is git://, use ssh, https:// is also useful, but maybe slowly.
+Git clone Git@github.com:yourusername/learngit.git
+#clone from origin. Git@github.com is git://, use ssh, https:// is also useful, but maybe slowly.
 ```
 
 #### branch
-```bash
-git checkout -b dev 
+```Bash
+Git checkout -b dev 
 # create dev branch and checkout
-# git branch dev, git checkout dev
-git branch 
+# Git branch dev, git checkout dev
+Git branch 
 # *dev, master
 
 # vim a new file, and add it to stage, then commit it. 
-git checkout master
-git merge dev
+Git checkout master
+Git merge dev
 # switched to branch master, and merge dev
 
-git branch -d dev
+Git branch -d dev
 # after merged, delete dev
 ```
 #### resolve conflict
@@ -103,96 +109,96 @@ git branch -d dev
 
 #### --no-ff
 - default, Fast forward will effect, and the branch info will be lost
-```bash
-git checkout -b dev
+```Bash
+Git checkout -b dev
 # vim license.txt, add, commit
-git checkout master
-git merge --no-ff -m "merge with no-ff" dev
+Git checkout master
+Git merge --no-ff -m "merge with no-ff" dev
 # with new commit, "-m" is needed
-git log --graph --pretty=oneline --abbrev-commit
+Git log --graph --pretty=oneline --abbrev-commit
 ```
 
 #### bug branch
-- git stash can store the status of your current workplace
+- Git stash can store the status of your current workplace
 - which branch's bug, and create new branch form it
-```bash
-git status 
+```Bash
+Git status 
 # current work needs to be stored
-git stash
+Git stash
 # stored
-git status 
+Git status 
 # it's clear
-git checkout master
-git checkout -b issue-01
+Git checkout master
+Git checkout -b issue-01
 # eg. The bug is in master's
 # fix the bug, then add and commit it
-git checkout master
-git merge --no-f -m "merge bug fix 01" issue-01
+Git checkout master
+Git merge --no-f -m "merge bug fix 01" issue-01
 # bug fixed, have to do the job
 
-git checkout test
-git status
+Git checkout test
+Git status
 # it's clear
-git stash list
+Git stash list
 # it's here
-git stash apply @{}
-git stash drop @{}
-or
-git stash pop
+Git stash apply @{}
+Git stash drop @{}
+Or
+Git stash pop
 # this will apply and drop
-# git stash list will be empty
+# Git stash list will be empty
 ```
 
 #### Force Delete feature branch
 - before merge to master, delete branch
-```bash
-git branch -D feature1
+```Bash
+Git branch -D feature1
 ```
 - "-D" needed
 
 #### 多人协作
 + 查看远程库的信息
-```bash
-git remote # 简略的信息
-git remote -v # 详细的信息
-# origin git@github.com:username/learngit.git(fetch)
-# origin git@github.com:username/learngit.git(push)
+```Bash
+Git remote # 简略的信息
+Git remote -v # 详细的信息
+# origin Git@github.com:username/learngit.git(fetch)
+# origin Git@github.com:username/learngit.git(push)
 ```
 + 推送分支
-```bash
-git push origin master
-git push origin dev # 推送其他分支
+```Bash
+Git push origin master
+Git push origin dev # 推送其他分支
 # master 是主分支，要时刻与远程同步
 # dev 是开发分支，所有的成员都需要在上面工作，要时刻与远程同步
 # bug 是用于在本地修复bug，没必要推到远程
 # feature是否推到远程，取决于你是否和你的团队成员合作在上面开发
 ```
 + 抓取分支
-```bash
+```Bash
 # 多人协作是，大家都会往master和dev分支上推送各自的修改
 # 模拟另外一个人克隆和提交
-git clone git@github.com:username/learngit.git
-git branch 
+Git clone Git@github.com:username/learngit.git
+Git branch 
 # master
 # 需要在dev分支上面开发，在本地创建dev
-git checkout -b dev origin/dev
+Git checkout -b dev origin/dev
 # vim file and add, commit
-# git push origin dev
+# Git push origin dev
 # at this moment, you modify the file modified by others
 # vim file and add, commit, push will be rejected
-git pull
+Git pull
 # no tracking information, 本地分支和远程分支的链接关系没有创建，使用以下命令进行创建
-git branch --set-upstream-to=origin/dev dev
+Git branch --set-upstream-to=origin/dev dev
 ```
 + 多人协作的工作模式
-	+ 首先，用 git push origin <branch-name>推送自己的修改
+	+ 首先，用 Git push origin <branch-name>推送自己的修改
 	+ if false，git pull and try merge
 	+ if merge false, then fix conflict, and add then commit
 	+ push them when conflict is solved
 
 #### Rebase
-```bash
-+ git rebase
+```Bash
++ Git rebase
 # 只对尚未推送或分享给别人的本地修改执行变基操作清除历史，从不对已推送至别处的提交执行变基操作
 ```
 
@@ -209,18 +215,18 @@ git branch --set-upstream-to=origin/dev dev
 	+ 在本地删除标签，'git tag -d v0.1'。创建的标签都只存储在本地，不会自动推送到远程，因此打错的标签可以再本地安全删除
 	+ 删除已推送的远程标签，首先在本地删除，'git tag -d v0.9', 'git push origin :refs/tags/v0.9', 然后可以通过登录github查看是否已经删除
 
-#### github
+#### Github
 + 在github上面，可以fork任意的开源仓库
 + 自己拥有fork后的仓库，有读写的权限
 + 可以推送pull request 给官方的仓库来贡献代码
 
-#### use gitee
+#### use Gitee
 + 'git remote -v'，查看远程库的信息
 + 'git remote rm [origin]',[origin]替换成远程库的名字，来删除关联
-+ 'git remote add github git@github.com:suainam/learngit.git', 'git remote add gitee git@gitee.com:suainam/learngit.git', 进行多个远程库的关联
++ 'git remote add Github git@github.com:suainam/learngit.git', 'git remote add gitee git@gitee.com:suainam/learngit.git', 进行多个远程库的关联
 + 'git push [name] master', 推送master到[name]
 
-#### git config
+#### Git config
 + 'git config --global color.ui true', 让命令输出更醒目
 + .gitignore文件，可以帮助我们忽略文件，以免每次add的时候，都会显示Untracked files。Github也有现成的各种配置文件，在线：https://github.com/github/gitignore
 	+ 忽略的规则一般是：
@@ -232,17 +238,17 @@ git branch --set-upstream-to=origin/dev dev
 + .gitignore需要放到版本库里，并且可以对ignore进行版本管理
 
 #### 配置别名
-```bash
-git config --glboal alias.st status
+```Bash
+Git config --glboal alias.st status
 #status as st
-git config --global alias.co checkout
-git config --global alias.ci commit
-git config --global alias.br branch
+Git config --global alias.co checkout
+Git config --global alias.ci commit
+Git config --global alias.br branch
 #global
-git config --global alias.unstage 'reset HEAD'
-git config --global alias.last 'log -1'
+Git config --global alias.unstage 'reset HEAD'
+Git config --global alias.last 'log -1'
 
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+Git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
 + 配置文件
 	+ global是对当前用户的，当前用户的配置文件在用户主目录下：.gitconfig
