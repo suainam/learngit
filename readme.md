@@ -149,6 +149,102 @@ git stash pop
 git branch -D feature1
 ```
 - "-D" needed
+
 #### 多人协作
-+ git clone，会自动将origin 的master和本地的master对应起来
-	 git remote，可查看远程库的信息，默认返回origin
++ 查看远程库的信息
+```bash
+git remote # 简略的信息
+git remote -v # 详细的信息
+# origin git@github.com:username/learngit.git(fetch)
+# origin git@github.com:username/learngit.git(push)
+```
++ 推送分支
+```bash
+git push origin master
+git push origin dev # 推送其他分支
+# master 是主分支，要时刻与远程同步
+# dev 是开发分支，所有的成员都需要在上面工作，要时刻与远程同步
+# bug 是用于在本地修复bug，没必要推到远程
+# feature是否推到远程，取决于你是否和你的团队成员合作在上面开发
+```
++ 抓取分支
+```bash
+# 多人协作是，大家都会往master和dev分支上推送各自的修改
+# 模拟另外一个人克隆和提交
+git clone git@github.com:username/learngit.git
+git branch 
+# master
+# 需要在dev分支上面开发，在本地创建dev
+git checkout -b dev origin/dev
+# vim file and add, commit
+# git push origin dev
+# at this moment, you modify the file modified by others
+# vim file and add, commit, push will be rejected
+git pull
+# no tracking information, 本地分支和远程分支的链接关系没有创建，使用以下命令进行创建
+git branch --set-upstream-to=origin/dev dev
+```
++ 多人协作的工作模式
+	+ 首先，用 git push origin <branch-name>推送自己的修改
+	+ if false，git pull and try merge
+	+ if merge false, then fix conflict, and add then commit
+	+ push them when conflict is solved
+
+#### Rebase
+```bash
++ git rebase
+# 只对尚未推送或分享给别人的本地修改执行变基操作清除历史，从不对已推送至别处的提交执行变基操作
+```
+
+#### 标签管理
++ 切换到需要打标签的分支上，以master为例
+	+ 'git tag <tag name>'，打标签，默认是在HEAD上，也可以根据commit id来打标签
+	+ 'git tag' 可以查看所有标签
+	+ 'git log --graph --pretty=oneline --abbrev-commit', 可以查看历史提交的图形化界面，然后根据commit id来打标签。'git tag v0.9 f52c633'
+	+ 标签默认按照字母排序
+	+ 'git tag -a v0.1 -m "version 0.1 release" 1094adb'，可以使用'-a'来指定变签名，'-m'指定说明文字
+	+ 'git show <tagname>' eg.'git show v0.9'，可以查看标签信息
++ 操作标签
+	+ 推送某个标签到远程，'git push origin v1.0' | 'git push origin --tags'，可以推送1个或一次性推送尚未推送的本地标签
+	+ 在本地删除标签，'git tag -d v0.1'。创建的标签都只存储在本地，不会自动推送到远程，因此打错的标签可以再本地安全删除
+	+ 删除已推送的远程标签，首先在本地删除，'git tag -d v0.9', 'git push origin :refs/tags/v0.9', 然后可以通过登录github查看是否已经删除
+
+#### github
++ 在github上面，可以fork任意的开源仓库
++ 自己拥有fork后的仓库，有读写的权限
++ 可以推送pull request 给官方的仓库来贡献代码
+
+#### use gitee
++ 'git remote -v'，查看远程库的信息
++ 'git remote rm [origin]',[origin]替换成远程库的名字，来删除关联
++ 'git remote add github git@github.com:suainam/learngit.git', 'git remote add gitee git@gitee.com:suainam/learngit.git', 进行多个远程库的关联
++ 'git push [name] master', 推送master到[name]
+
+#### git config
++ 'git config --global color.ui true', 让命令输出更醒目
++ .gitignore文件，可以帮助我们忽略文件，以免每次add的时候，都会显示Untracked files。Github也有现成的各种配置文件，在线：https://github.com/github/gitignore
+	+ 忽略的规则一般是：
+		+ 忽略操作系统自动生成的文件，比如windows下面的缩略图等
+		+ 忽略编译生成的中间文件、可执行文件。也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如java编译产生的.class文件
+		+ 忽略自己的带有敏感信息的配置文件，比如存放口令的配置文件 
+	+ 如果想要添加文件到stage，如果是忽略的，需要使用'git add -f filename'
+		+ 如果错误忽略了，.gitignore写的有问题，通过'git check-ignore'来检查
++ .gitignore需要放到版本库里，并且可以对ignore进行版本管理
+
+#### 配置别名
+```bash
+git config --glboal alias.st status
+#status as st
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.br branch
+#global
+git config --global alias.unstage 'reset HEAD'
+git config --global alias.last 'log -1'
+
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+```
++ 配置文件
+	+ global是对当前用户的，当前用户的配置文件在用户主目录下：.gitconfig
+	+ 如果不加global，就是针对当前的仓库的，每个仓库的git配置文件都放在：.git/config 
+
